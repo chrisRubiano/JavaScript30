@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex Panels</title>
+  <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+</head>
+<body>
+  <style>
+    html {
+      box-sizing: border-box;
+      background: #ffc600;
+      font-family: 'Shadows Into Light', cursive;
+      font-size: 20px;
+      font-weight: 200;
+    }
+    
+    body {
+      margin: 0;
+    }
+    
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    .panels {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .panel {
+      background: #6B0F9C;
+      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+      color: white;
+      text-align: center;
+      align-items: center;
+      /* Safari transitionend event.propertyName === flex */
+      /* Chrome + FF transitionend event.propertyName === flex-grow */
+      transition:
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        background 0.2s;
+      font-size: 20px;
+      background-size: cover;
+      background-position: center;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel1 { background-image:url(https://scontent.fhmo2-1.fna.fbcdn.net/v/t1.0-9/377620_10200154564341204_1475375353_n.jpg?_nc_cat=108&_nc_eui2=AeFlzn9pvX4xTy9ptTuIb4IT9ONFvA3dS8OfRCqg9Houn0XF3W1MgK1CNQCyZ-FaFHLwTwMrB3dklC8CWDpIl1SYjpCSc_LsdtNx1PKzzsWwoA&_nc_oc=AQmsv45jYtcYrWQw2xB6_lRN_RZbWTVcZQhDFQX9o3mdtKxq_9ZRFQ2ms9G3djTd_1HQ0aUJsaAxYw8AjOQsEAfb&_nc_ht=scontent.fhmo2-1.fna&oh=d46302ea9dd4dc98d504bf317e1471d3&oe=5DC4B896); }
+    .panel2 { background-image:url(https://scontent.fhmo2-1.fna.fbcdn.net/v/t31.0-8/177206_4418723280585_468993743_o.jpg?_nc_cat=101&_nc_eui2=AeG8M1IBhTEqXOWkgxQpm8ZUyxHas7lmBDDd8OfCBxtuob4Kpu56Ce9uMD0J7XoG5bUp9HU7XoTG2u4b2PiPnI7a57a0IkOQZgCy-ft7_xeJRA&_nc_oc=AQm2EqnJFoytSTLHZ2NVPpvWon8nXOkN12JYWf3alVFuBaP1ws8_9fW-EKwf-cElc3Zmzz8UbQobQvV_gOoCqBSU&_nc_ht=scontent.fhmo2-1.fna&oh=ba1cc24a7365916bbe264cd18e75905f&oe=5DB5C36B); }
+    .panel3 { background-image:url(https://scontent.fhmo2-1.fna.fbcdn.net/v/t1.0-9/12079209_10206529677115039_8961899351759786571_n.jpg?_nc_cat=100&_nc_eui2=AeF3Y17VKsLKU_CAFXFWRzDFQb0FsKOHQAb3P64hTZ1Iy23gjBEc6Jlfm7jPluFtvUWPdwNH5yio56eRbKL3e8sV0xbntCJn0RfuJegD17dlWA&_nc_oc=AQkNMCZ-fXqfsnRCW8xSjkVu6FosYssl_xPdb1dKhiiSnEH7LuIthZ93PqdxKRfhJyYpcHJwxIvdA0s-pin9Ei5w&_nc_ht=scontent.fhmo2-1.fna&oh=d39c77d1bef1ca32e06f35825739ffe0&oe=5DA494B7); }
+    .panel4 { background-image:url(https://scontent.fhmo2-1.fna.fbcdn.net/v/t31.0-8/10708776_10204197048000769_3106684451955590631_o.jpg?_nc_cat=106&_nc_eui2=AeGrz2bqyAHBh5PdywQ5K72Scp0Eg2zaF_iwN11S7Xi8fXoRzvTcaT5ShB4wNFiHQIt01xgIuN4sHUYEBC_6wukQ88O6oSG5aiZc1Y7R5ZKK0w&_nc_oc=AQlv9D-QfIfg1wxNz6e21lvzeQCjg31mhwrigK2hTJExnpK44mwscVp-7VN1OOMLk6FoL1pXiUabBkJDHvRbVOQq&_nc_ht=scontent.fhmo2-1.fna&oh=5701a44fbeb97c53f1372868cc88c792&oe=5DC7359B); }
+    .panel5 { background-image:url(https://scontent.fhmo2-1.fna.fbcdn.net/v/t1.0-9/64555674_10216888235472524_4906226393026658304_o.jpg?_nc_cat=100&_nc_eui2=AeGMogK6J2vb8GHBbxW9g9bYlyakNjEdeaofl40oO5ciSWErpWIW6Cq02tQf-qAfdW4GVkdm6JqqYjgmWQKxsrdIPitbaVlFI2F7A8beQvn5dQ&_nc_oc=AQnW2H-9kvFC1DG2u_F2S_gIy6cqfsyOYF3lHnGSptm17RVfIaGRZdQ4u5EPkjoRV2OJHXULd09Efl8DQJ0o1wpW&_nc_ht=scontent.fhmo2-1.fna&oh=cd4803ac082b33af8f83ce077f036517&oe=5DB47848); }
+
+    /* Flex Children */
+    .panel > * {
+      margin: 0;
+      width: 100%;
+      transition: transform 0.5s;
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel > *:first-child { transform: translateY(-100%); }
+    .panel.open-active > *:first-child { transform: translateY(0); }
+    .panel > *:last-child { transform: translateY(100%); }
+    .panel.open-active > *:last-child { transform: translateY(0); }
+
+    .panel p {
+      text-transform: uppercase;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 2em;
+    }
+    
+    .panel p:nth-child(2) {
+      font-size: 2.5em;
+    }
+
+    .panel.open {
+      font-size: 40px;
+      flex: 5;
+    }
+
+  </style>
+
+
+  <div class="panels">
+    <div class="panel panel1">
+      <p>Grandaddy</p>
+      <p>Way we wont</p>
+    </div>
+    <div class="panel panel2">
+      <p>The Symposium</p>
+      <p>Poison</p>
+    </div>
+    <div class="panel panel3">
+      <p>Frank Ocean</p>
+      <p>Nights</p>
+    </div>
+    <div class="panel panel4">
+      <p>Beirut</p>
+      <p>Postcards from Italy</p>
+    </div>
+    <div class="panel panel5">
+      <p>Jack Stauber</p>
+      <p>Two time</p>
+    </div>
+  </div>
+
+  <script>
+    const panels = document.querySelectorAll('.panel');
+
+    function toggleOpen() {
+      console.log('hello');
+      panels.forEach(panel => panel.classList.contains('open') ? panel.classList.remove('open') : panel)
+      this.classList.toggle('open');
+    }
+
+    function toggleActive(e) {
+      if(e.propertyName.includes('flex')) {
+      this.classList.toggle('open-active');
+      }
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+
+  </script>
+
+
+
+</body>
+</html>
